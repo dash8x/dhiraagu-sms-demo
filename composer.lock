@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0444f78cce79b522f1b8f15c49e12945",
+    "content-hash": "566fb456742222f40d6bffb0b359cbd0",
     "packages": [
         {
             "name": "dash8x/dhiraagu-sms",
-            "version": "v0.2.2",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dash8x/dhiraagu-sms.git",
-                "reference": "0d034a14b3f84d83554216b7352ed9ea51d8f542"
+                "reference": "b5423774fd5fc29c28643653b88e4d6b84934ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dash8x/dhiraagu-sms/zipball/0d034a14b3f84d83554216b7352ed9ea51d8f542",
-                "reference": "0d034a14b3f84d83554216b7352ed9ea51d8f542",
+                "url": "https://api.github.com/repos/dash8x/dhiraagu-sms/zipball/b5423774fd5fc29c28643653b88e4d6b84934ebb",
+                "reference": "b5423774fd5fc29c28643653b88e4d6b84934ebb",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
                 "sms",
                 "texting"
             ],
-            "time": "2018-05-14T17:14:47+00:00"
+            "time": "2018-05-14T19:01:37+00:00"
         }
     ],
     "packages-dev": [

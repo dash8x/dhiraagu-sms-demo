@@ -147,8 +147,8 @@ class App
 
         try {
             $response = $sender->send($numbers, $this->message);
-            $this->message_id = $response['message_id'];
-            $this->message_key = $response['message_key'];
+            $this->message_id = $response->message_id;
+            $this->message_key = $response->message_key;
 
             $this->alerts[] = [
                 'type' => 'success',
