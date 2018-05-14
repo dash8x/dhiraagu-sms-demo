@@ -4,6 +4,7 @@ namespace Dash8x\DhiraaguSmsDemo;
 
 
 use Dash8x\DhiraaguSms\DhiraaguSms;
+use Dash8x\DhiraaguSms\Exception\DhiraaguDeliveryException;
 use Dash8x\DhiraaguSms\Exception\DhiraaguSmsException;
 
 class App
@@ -175,7 +176,7 @@ class App
                 'type' => 'success',
                 'text' => "Delivery status\n".json_encode($response),
             ];
-        } catch (DhiraaguSmsException $e) {
+        } catch (DhiraaguDeliveryException $e) {
             $this->alerts[] = [
                 'type' => 'danger',
                 'text' => 'Error! '.$e->getMessage(),
