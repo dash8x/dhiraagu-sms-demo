@@ -15,46 +15,77 @@
 
     <div style="min-height: 100vh" class="d-flex justify-content-center align-items-center">
         <div class="container">
-            <form method="POST">
-                <h1 class="mb-5">Dhiraagu Bulk SMS Demo</h1>
+            <h1 class="mb-5">Dhiraagu Bulk SMS Demo</h1>
 
-                <?php if (! empty($app->alerts)) : ?>
-                <div id="alerts">
-                    <?php foreach($app->alerts as $alert) : ?>
-                    <div class="alert alert-<?php echo $alert['type'] ?? 'info'; ?>" role="alert">
-                        <?php echo $alert['text'] ?? ''; ?>
-                    </div>
-                    <?php endforeach; ?>
+            <?php if (! empty($app->alerts)) : ?>
+            <div id="alerts">
+                <?php foreach($app->alerts as $alert) : ?>
+                <div class="alert alert-<?php echo $alert['type'] ?? 'info'; ?>" role="alert">
+                    <?php echo $alert['text'] ?? ''; ?>
                 </div>
-                <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
 
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" value="<?php echo $app->username; ?>" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" name="password" value="<?php echo $app->password; ?>" placeholder="Enter password">
-                </div>
-                <div class="form-group">
-                    <label for="url">Url</label>
-                    <input type="url" class="form-control" name="url" value="<?php echo $app->url; ?>" placeholder="Enter url">
-                </div>
-                <div class="form-group">
-                    <label for="number">Mobile Number</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">+960</span>
+            <ul class="nav nav-tabs" role="tablist">
+                <?php $tabs = ['sms' => 'Send SMS', 'delivery' => 'Check Delivery Status']; ?>
+                <?php foreach ($tabs as $tab => $title) : ?>
+                <li class="nav-item">
+                    <a class="nav-link<?php echo $tab == $app->tab ? ' active' : ''; ?>" data-toggle="tab" id="<?php echo $tab; ?>-tab" href="#<?php echo $tab; ?>" role="tab" aria-controls="<?php echo $tab; ?>" <?php echo $tab == $app->tab ? 'aria-selected="true"' : ''; ?>>
+                        <?php echo $title; ?>
+                    </a>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade <?php echo $app->tab == 'sms' ? 'show active' : ''; ?>" id="sms" role="tabpanel" aria-labelledby="sms-tab">
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="username">Username *</label>
+                            <input type="text" class="form-control" name="username" value="<?php echo $app->escaped('username'); ?>" required placeholder="Enter username">
                         </div>
-                        <input type="text" class="form-control" name="number" value="<?php echo $app->number; ?>" placeholder="Enter number">
-                    </div>
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input type="text" class="form-control" name="password" value="<?php echo $app->escaped('password'); ?>" required placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label for="url">Url *</label>
+                            <input type="url" class="form-control" name="url" value="<?php echo $app->escaped('url'); ?>" required placeholder="Enter url">
+                        </div>
+                        <div class="form-group">
+                            <label for="numbers">Mobile Number(s) *</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">+960</span>
+                                </div>
+                                <input type="text" class="form-control" name="numbers" value="<?php echo $app->escapeHtml(implode(',', $app->numbers)); ?>" required placeholder="Enter numbers seperated by commas">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea class="form-control" name="message" placeholder="Enter message" required><?php echo $app->escaped('message'); ?></textarea>
+                        </div>
+                        <button type="submit" name="submit" value="send_sms" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea class="form-control" name="message" placeholder="Enter message"><?php echo $app->message; ?></textarea>
+
+                <div class="tab-pane fade <?php echo $app->tab == 'delivery' ? 'show active' : ''; ?>" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="message_id">Message ID *</label>
+                            <input type="text" class="form-control" name="message_id" required value="<?php echo $app->escaped('message_id'); ?>" placeholder="Enter message id">
+                        </div>
+                        <div class="form-group">
+                            <label for="message_key">Message Key *</label>
+                            <input type="text" class="form-control" name="message_key" required value="<?php echo $app->escaped('message_key'); ?>" placeholder="Enter message key">
+                        </div>
+                        <button type="submit" name="submit" value="check_delivery" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-                <button type="submit" name="submit" value="1" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
+
+
         </div>
     </div>
 
