@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "dash8x/dhiraagu-sms": "^0.3.0"
+        "dash8x/dhiraagu-sms": "^0.4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
